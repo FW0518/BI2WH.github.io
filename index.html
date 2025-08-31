@@ -5,28 +5,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>添加我的微信 | WeChat QR</title>
   <meta name="description" content="扫码或复制微信号添加好友" />
-  <!-- 适配社交分享 -->
   <meta property="og:title" content="添加我的微信" />
   <meta property="og:description" content="扫码或复制微信号添加好友" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://i.ibb.co/xxxx/your-qr.png" />
+  <meta property="og:image" content="https://i.ibb.co/Ps7N2y5f/20250831234302-238-65.jpg" />
   <meta name="theme-color" content="#111827" />
   <style>
     :root{
-      --bg:#0b1220; /* 深色背景 */
-      --card:#111827; /* 卡片背景 */
-      --text:#e5e7eb; /* 主文字 */
-      --muted:#9ca3af; /* 次文字 */
-      --accent:#22c55e; /* 按钮颜色 */
+      --bg:#0b1220;
+      --card:#111827;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --accent:#22c55e;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,\"PingFang SC\",\"Noto Sans CJK SC\",\"Microsoft YaHei\",sans-serif;
       background: radial-gradient(1200px 800px at 50% -10%, #1f2937 0%, var(--bg) 60%, #05070d 100%);
-      color:var(--text); display:flex; align-items:center; justify-content:center; padding:24px;
+      color:var(--text); display:flex; align-items:flex-start; justify-content:center; padding:24px;
     }
-    .wrap{ width:min(680px, 96vw); }
+    .wrap{ width:min(680px, 96vw); margin-top: max(10vh, 40px); }
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
       border:1px solid rgba(255,255,255,0.08);
@@ -42,7 +41,7 @@
     }
     .qr-box img{
       width:min(76vw, 360px); height:auto; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.4);
-      image-rendering: -webkit-optimize-contrast;  /* 让二维码更清晰 */
+      image-rendering: -webkit-optimize-contrast;
     }
     .btns{ display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
     button, a.btn{
@@ -65,7 +64,6 @@
 
       <div class="qr-area">
         <div class="qr-box">
-          <!-- 将 src 换成你在 imgbb 上获取的 Direct link（以 .png/.jpg 结尾） -->
           <img id="qr" src="https://i.ibb.co/Ps7N2y5f/20250831234302-238-65.jpg" alt="微信二维码" loading="eager" decoding="sync" />
         </div>
         <div class="btns">
@@ -82,25 +80,20 @@
   </main>
 
   <script>
-    // ======= 替换成你的信息 =======
-    const WECHAT_ID = "V_me_50_go_KFC"; // 你的微信号
-    const QR_URL = "https://i.ibb.co/Ps7N2y5f/20250831234302-238-65.jpg"; // imgbb 的 Direct link（注意必须是 https 并以 .png/.jpg 结尾）
-    // =================================
+    const WECHAT_ID = "V_me_50_go_KFC";
+    const QR_URL = "https://i.ibb.co/Ps7N2y5f/20250831234302-238-65.jpg";
 
-    // 注入到页面
     document.getElementById('wxText').textContent = WECHAT_ID;
     document.getElementById('qr').src = QR_URL;
     document.getElementById('openImg').href = QR_URL;
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 复制按钮
     const copyBtn = document.getElementById('copyBtn');
     copyBtn.addEventListener('click', async () => {
       try {
         if (navigator.clipboard && window.isSecureContext) {
           await navigator.clipboard.writeText(WECHAT_ID);
         } else {
-          // 兼容方案
           const ta = document.createElement('textarea');
           ta.value = WECHAT_ID; ta.style.position = 'fixed'; ta.style.opacity = '0';
           document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
